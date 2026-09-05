@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "power-sampling"
+version = "0.1.0"
+description = "Autoregressive MCMC power sampling on GSM8K and MATH500"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "ipykernel>=6",
+    "peft==0.20.0",
+    "accelerate==1.6.0",
+    "math-verify==0.7.0",
+    "matplotlib>=3.10",
+    "nbclient>=0.8",
+    "nbconvert>=7",
+    "nbformat>=5.9",
+    "numpy>=2.0",
+    "pandas>=3.0",
+    "pylatexenc>=2.10",
+    "pytest>=8.3",
+    "sympy==1.14.0",
+    "transformers==5.7.0",
+    "vllm==0.19.1",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["power_sampling*", "math500_sampling*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -1,0 +1,7 @@
+{
+  "completed_steps": 5,
+  "reason": "step_limit",
+  "wall_seconds": 20.389586342033,
+  "final_checkpoint": "/home/sqsang/ml/power_sampling/experiments/gsm8k_power_policy/checkpoints/smoke_alpha2/final",
+  "max_seconds": 180.0
+}

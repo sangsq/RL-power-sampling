@@ -1,0 +1,15 @@
+{
+  "name": "test_policy",
+  "adapter": "/home/sqsang/ml/power_sampling/experiments/gsm8k_power_policy/checkpoints/alpha2_seed0/final",
+  "split": "test",
+  "limit": 1319,
+  "samples": 1,
+  "temperature": 1.0,
+  "seed": 2026,
+  "batch_size": 64,
+  "max_tokens": 512,
+  "score": false,
+  "model": "Qwen/Qwen2.5-0.5B",
+  "revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "adapter_sha256": "5b86051d404c3160caed8288aa753dd806774c5f9d46ec59ce4de7b078000091"
+}

@@ -1,0 +1,40 @@
+{
+  "checked_at_utc": "2026-09-05T04:29:25.029154+00:00",
+  "run": "alpha4_box128_seed0",
+  "training": {
+    "completed_steps": 221,
+    "reason": "time_budget",
+    "wall_seconds": 1713.2583643950056,
+    "final_checkpoint": "/home/sqsang/ml/power_sampling/experiments/gsm8k_power_policy/checkpoints/alpha4_box128_seed0/final",
+    "max_seconds": 1740.0
+  },
+  "exit_code": 0,
+  "logged_updates": 221,
+  "finite_metrics": true,
+  "first_16_updates": {
+    "objective": -273.6774549484253,
+    "kl_estimate": -0.0016002235934138298,
+    "mean_length": 124.1171875,
+    "eos_rate": 0.080078125,
+    "truncated_rate": 0.919921875,
+    "short_rate": 0.0107421875,
+    "gradient_norm": 9291.465606689453
+  },
+  "last_16_updates": {
+    "objective": -84.10006999969482,
+    "kl_estimate": 12.9784477353096,
+    "mean_length": 127.078125,
+    "eos_rate": 0.04296875,
+    "truncated_rate": 0.95703125,
+    "short_rate": 0.0,
+    "gradient_norm": 995.9791812896729
+  },
+  "sampled_tokens": 1794093,
+  "peak_memory_gb": 11.085417472,
+  "clip_fraction": 1.0,
+  "final_adapter_exists": true,
+  "final_adapter_sha256": "fd05315fe02b38c19df16b2cad8cac4051c5d151598bb06b500a32b4a4432496",
+  "source_snapshots_verified": true,
+  "gpu_utilization_mean_percent": 72.07799767171129,
+  "gpu_monitor_samples": 859
+}

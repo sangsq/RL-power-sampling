@@ -1,0 +1,6 @@
+{
+  "src/power_sampling/hf_policy.py": "edc36a7758397cf2fe6837cc39d82e9bafdc9980c1e3fcad75811a35443d7dee",
+  "experiments/gsm8k_power_policy/train.py": "ac790ba5e62c8ca6b7bd3eac714e2ff8ddbb13cbd555fbde62961bcbd4145140",
+  "pyproject.toml": "730c3466f17274af980f34b962f2f402a223853957fc67ee37fa998dcdd22c5c",
+  "requirements-tested.txt": "e71b8e390e33a0dd8e1fc5748c29cf89dd2ecd18f3f7b044371c81af516ab3fd"
+}

@@ -1,0 +1,24 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+models/
+
+# Local agent activity and scratch state
+/agent/
+/AGENTS.md
+/agents.md
+
+# Model weights, adapters, optimizer states, and checkpoint directories
+checkpoints/
+checkpoint/
+checkpoint-*/
+chpoints/
+ckpts/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+pytorch_model*.bin
+adapter_model*.bin

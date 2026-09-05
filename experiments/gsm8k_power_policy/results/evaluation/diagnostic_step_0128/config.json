@@ -1,0 +1,15 @@
+{
+  "name": "diagnostic_step_0128",
+  "adapter": "/home/sqsang/ml/power_sampling/experiments/gsm8k_power_policy/checkpoints/alpha2_seed0/step_0128",
+  "split": "train",
+  "limit": 64,
+  "samples": 4,
+  "temperature": 1.0,
+  "seed": 2026,
+  "batch_size": 64,
+  "max_tokens": 512,
+  "score": true,
+  "model": "Qwen/Qwen2.5-0.5B",
+  "revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "adapter_sha256": "3c357a71c8d720ee734e25d6634b4740903bc84947ae4019c0420265e3a067f1"
+}

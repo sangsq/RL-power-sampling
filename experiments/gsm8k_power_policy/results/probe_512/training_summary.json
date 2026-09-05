@@ -1,0 +1,7 @@
+{
+  "completed_steps": 2,
+  "reason": "step_limit",
+  "wall_seconds": 30.270463711000048,
+  "final_checkpoint": "/home/sqsang/ml/power_sampling/experiments/gsm8k_power_policy/checkpoints/probe_512/final",
+  "max_seconds": 180.0
+}

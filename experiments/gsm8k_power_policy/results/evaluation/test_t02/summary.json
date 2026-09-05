@@ -1,0 +1,18 @@
+{
+  "questions": 1319,
+  "samples_per_question": 1,
+  "accuracy": 0.2744503411675512,
+  "pass_at_k": 0.2744503411675512,
+  "parse_rate": 0.6580742987111448,
+  "mean_length": 270.14935557240335,
+  "median_length": 263.0,
+  "eos_rate": 0.9393479909021987,
+  "first_token_eos_rate": 0.0,
+  "short_rate": 0.0,
+  "mean_unique_responses": 1.0,
+  "mean_unique_parsed_answers": 0.6580742987111448,
+  "answer_accuracy": 0.41698256254738436,
+  "answer_pass_at_k": 0.41698256254738436,
+  "answer_parse_rate": 0.8976497346474602,
+  "mean_unique_explicit_answers": 0.8976497346474602
+}

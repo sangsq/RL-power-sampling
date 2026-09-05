@@ -1,0 +1,174 @@
+{
+  "complete_groups": 6,
+  "partial_groups": {
+    "power_seed31415": 8
+  },
+  "per_seed": [
+    {
+      "condition": "base",
+      "seed": 0,
+      "accuracy": 0.45,
+      "math_verify_accuracy": 0.452,
+      "grader_disagreements": 7,
+      "parse_rate": 0.844,
+      "response_tokens": 673.29,
+      "sampled_tokens": 673.29,
+      "acceptance_rate": 0.0
+    },
+    {
+      "condition": "base",
+      "seed": 1,
+      "accuracy": 0.478,
+      "math_verify_accuracy": 0.488,
+      "grader_disagreements": 7,
+      "parse_rate": 0.854,
+      "response_tokens": 655.008,
+      "sampled_tokens": 655.008,
+      "acceptance_rate": 0.0
+    },
+    {
+      "condition": "low_temp",
+      "seed": 0,
+      "accuracy": 0.606,
+      "math_verify_accuracy": 0.616,
+      "grader_disagreements": 7,
+      "parse_rate": 0.904,
+      "response_tokens": 636.546,
+      "sampled_tokens": 636.546,
+      "acceptance_rate": 0.0
+    },
+    {
+      "condition": "low_temp",
+      "seed": 1,
+      "accuracy": 0.598,
+      "math_verify_accuracy": 0.612,
+      "grader_disagreements": 7,
+      "parse_rate": 0.878,
+      "response_tokens": 669.604,
+      "sampled_tokens": 669.604,
+      "acceptance_rate": 0.0
+    },
+    {
+      "condition": "power",
+      "seed": 0,
+      "accuracy": 0.652,
+      "math_verify_accuracy": 0.664,
+      "grader_disagreements": 8,
+      "parse_rate": 0.884,
+      "response_tokens": 627.306,
+      "sampled_tokens": 9842.848,
+      "acceptance_rate": 0.6082589523440892
+    },
+    {
+      "condition": "power",
+      "seed": 1,
+      "accuracy": 0.646,
+      "math_verify_accuracy": 0.658,
+      "grader_disagreements": 8,
+      "parse_rate": 0.894,
+      "response_tokens": 628.978,
+      "sampled_tokens": 9879.794,
+      "acceptance_rate": 0.5866974772099002
+    }
+  ],
+  "aggregates": {
+    "base": {
+      "seeds": [
+        0,
+        1
+      ],
+      "accuracy": 0.46399999999999997,
+      "math_verify_accuracy": 0.47,
+      "parse_rate": 0.849,
+      "response_tokens": 664.149,
+      "sampled_tokens": 664.149,
+      "acceptance_rate": 0.0,
+      "grader_disagreements": 7.0,
+      "accuracy_std": 0.01979898987322331
+    },
+    "low_temp": {
+      "seeds": [
+        0,
+        1
+      ],
+      "accuracy": 0.602,
+      "math_verify_accuracy": 0.614,
+      "parse_rate": 0.891,
+      "response_tokens": 653.075,
+      "sampled_tokens": 653.075,
+      "acceptance_rate": 0.0,
+      "grader_disagreements": 7.0,
+      "accuracy_std": 0.005656854249492385
+    },
+    "power": {
+      "seeds": [
+        0,
+        1
+      ],
+      "accuracy": 0.649,
+      "math_verify_accuracy": 0.661,
+      "parse_rate": 0.889,
+      "response_tokens": 628.142,
+      "sampled_tokens": 9861.321,
+      "acceptance_rate": 0.5974782147769947,
+      "grader_disagreements": 8.0,
+      "accuracy_std": 0.004242640687119289
+    }
+  },
+  "comparisons": {
+    "low_temp_minus_base": {
+      "seeds": [
+        0,
+        1
+      ],
+      "difference": 0.138,
+      "ci95": [
+        0.101,
+        0.174
+      ]
+    },
+    "power_minus_base": {
+      "seeds": [
+        0,
+        1
+      ],
+      "difference": 0.185,
+      "ci95": [
+        0.147,
+        0.223
+      ]
+    },
+    "power_minus_low_temp": {
+      "seeds": [
+        0,
+        1
+      ],
+      "difference": 0.047,
+      "ci95": [
+        0.018,
+        0.077
+      ]
+    }
+  },
+  "low_temp_to_power_transitions": {
+    "seed0": {
+      "both_correct": 259,
+      "power_gain": 67,
+      "both_wrong": 130,
+      "power_loss": 44
+    },
+    "seed1": {
+      "both_correct": 263,
+      "power_loss": 36,
+      "both_wrong": 141,
+      "power_gain": 60
+    }
+  },
+  "paper_qwen_math_7b": {
+    "base": 0.496,
+    "low_temp": 0.69,
+    "power": 0.748
+  },
+  "primary_grader": "paper-compatible MATH grader",
+  "sensitivity_grader": "math_verify"
+}
