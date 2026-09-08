@@ -1,9 +1,10 @@
 # LLM reasoning via distribution sharpening
 
 Experiments in reasoning by sequence-level power-sharpening a transformer language model:
-$$
+
+```math
 p(\mathrm{response} \mid \mathrm{prompt}) \;\longrightarrow\; \frac{p(\mathrm{response} \mid \mathrm{prompt})^{\alpha}}{Z_{\alpha}}
-$$
+```
 
 Power distribution is obtained via: 
 1. Markov Chain Monte Carlo (MCMC) power sampling, or 
