@@ -1,0 +1,7 @@
+{
+  "questions": 500,
+  "samples": 32,
+  "session_seconds": 258.66804731899174,
+  "output_sha256": "7dcd00d1c3d9996095d7716275471c7f1b8ba6f0ab36b7a231f19af172694ac7",
+  "raw_path": "experiments/gsm8k_power_policy/results/03_05_evaluation/raw/test/policy_alpha2.jsonl"
+}

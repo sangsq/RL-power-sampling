@@ -1,0 +1,7 @@
+{
+  "questions": 500,
+  "samples": 32,
+  "session_seconds": 1927.2810188899748,
+  "output_sha256": "380cc1069bd801eae1efe63f5c14b93603c1736db3ae4a028f2ab55a9f1ea9d1",
+  "raw_path": "experiments/03_gsm8k_power_policy/results/03_05_evaluation/raw/test/mcmc_alpha2.jsonl"
+}

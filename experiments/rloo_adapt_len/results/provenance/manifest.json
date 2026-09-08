@@ -1,0 +1,185 @@
+{
+  "description": "Historical source paths identify local provenance only; report generation needs no scratch files. Original raw outputs and checkpoints are preserved locally. Active scripts may be updated after migration; hashes describe imported evidence.",
+  "files": {
+    "settings.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/settings.json",
+      "source_sha256": "d5dd55984d99f202216b6e7174e5715d043f53193ea72685b1b7dc1dc024d9d5",
+      "sha256": "d5dd55984d99f202216b6e7174e5715d043f53193ea72685b1b7dc1dc024d9d5",
+      "operation": "verbatim copy"
+    },
+    "settings_alpha4.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/settings_alpha4.json",
+      "source_sha256": "52483bd9982ded3a6ebf0356fa0c3140a57f5651e5d9b3d371c3251eac8a6666",
+      "sha256": "52483bd9982ded3a6ebf0356fa0c3140a57f5651e5d9b3d371c3251eac8a6666",
+      "operation": "verbatim copy"
+    },
+    "scripts/common.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/scripts/common.py",
+      "source_sha256": "ae05759f4f3331a98b1c44cae5192fa566c44896ef7d3d512187f99092a9378b",
+      "sha256": "ae05759f4f3331a98b1c44cae5192fa566c44896ef7d3d512187f99092a9378b",
+      "operation": "verbatim copy"
+    },
+    "scripts/train.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/scripts/train.py",
+      "source_sha256": "7d431d18e63d4bf77bf4dfafb45177bb8db24d1a1851e409a83cebaec04a44a7",
+      "sha256": "7d431d18e63d4bf77bf4dfafb45177bb8db24d1a1851e409a83cebaec04a44a7",
+      "operation": "verbatim copy"
+    },
+    "scripts/evaluate.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/scripts/evaluate.py",
+      "source_sha256": "49cbe2901b92eafed11e718ab62c863c03bcb8ee86c89932301adb56f35d9ed2",
+      "sha256": "49cbe2901b92eafed11e718ab62c863c03bcb8ee86c89932301adb56f35d9ed2",
+      "operation": "verbatim copy"
+    },
+    "scripts/analyze.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/scripts/analyze.py",
+      "source_sha256": "d8ae441c1e1a09387db271bc4abd1f2d9524d85f1dbe10deb43e352e2684003a",
+      "sha256": "d8ae441c1e1a09387db271bc4abd1f2d9524d85f1dbe10deb43e352e2684003a",
+      "operation": "verbatim copy"
+    },
+    "results/alpha2_adapt_len/config.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/config.json",
+      "source_sha256": "010cf9915842e12e3bb2cecd089b28878618e8601f94bf06e2e4831c4a9e578f",
+      "sha256": "010cf9915842e12e3bb2cecd089b28878618e8601f94bf06e2e4831c4a9e578f",
+      "operation": "verbatim copy"
+    },
+    "results/alpha2_adapt_len/metrics.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/metrics.jsonl",
+      "source_sha256": "3173a753b7ac4425747ddddb43922239856f0b8066bc24faf4f9228755127a79",
+      "sha256": "3173a753b7ac4425747ddddb43922239856f0b8066bc24faf4f9228755127a79",
+      "operation": "verbatim copy"
+    },
+    "results/alpha2_adapt_len/probe.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/probe.jsonl",
+      "source_sha256": "ece296ca1eac00e9f6fa564b89440a8d44550db2a10a877c9a71cb372ab25eca",
+      "sha256": "ece296ca1eac00e9f6fa564b89440a8d44550db2a10a877c9a71cb372ab25eca",
+      "operation": "verbatim copy"
+    },
+    "results/alpha2_adapt_len/stages.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/stages.jsonl",
+      "source_sha256": "21b521078837939ba7e94c6a867aaa047f6b024017e542838aeecd1bd7fce2ff",
+      "sha256": "21b521078837939ba7e94c6a867aaa047f6b024017e542838aeecd1bd7fce2ff",
+      "operation": "verbatim copy"
+    },
+    "results/alpha2_adapt_len/completion.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/completion.json",
+      "source_sha256": "edaf104b49b55f49c87b73e24045eadac62a69da8991257ba0cc17d1e5e39147",
+      "sha256": "edaf104b49b55f49c87b73e24045eadac62a69da8991257ba0cc17d1e5e39147",
+      "operation": "verbatim copy"
+    },
+    "results/alpha2_adapt_len/probe_logprobs.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/probe_samples.jsonl",
+      "source_sha256": "b32b9b05757631406dab3e7714645bfe5fafe8dbfc329540f97486c199540738",
+      "sha256": "f8943204f0e092a457ce47d28aca11fb0e6c8c049e41a277fac28d139c182a04",
+      "operation": "Retain step, sequence log probabilities and grades; omit response token arrays."
+    },
+    "results/evaluation/questions.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/evaluation/samples.jsonl",
+      "source_sha256": "63db5bd592d9da61e071b9e9bb860b0f27cb59885004155e1d0356b090a0c162",
+      "sha256": "65cbfcf087b8bfa5d7e1419bf0c62d788a5ec88e1962c8f360ce856bac20c6e2",
+      "operation": "Per-question grading counts, response lengths and generated-token totals; original order retained."
+    },
+    "results/evaluation/config.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/evaluation/config.json",
+      "source_sha256": "c9708df788bc7d07b167628301bfc1b3dd0eb3876d0963a39ba52a981f5bdfe0",
+      "sha256": "c9708df788bc7d07b167628301bfc1b3dd0eb3876d0963a39ba52a981f5bdfe0",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/completion.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/evaluation/completion.json",
+      "source_sha256": "c7dde934d75da9690186b3b070579727bfce30fb5867191527698bd948344129",
+      "sha256": "c7dde934d75da9690186b3b070579727bfce30fb5867191527698bd948344129",
+      "operation": "verbatim copy"
+    },
+    "results/alpha4_adapt_len/config.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha4_adapt_len/config.json",
+      "source_sha256": "7ba92cc3086f9d163108aed4c045efffc6846fa9a0e229210e29d20679dbc07d",
+      "sha256": "7ba92cc3086f9d163108aed4c045efffc6846fa9a0e229210e29d20679dbc07d",
+      "operation": "verbatim copy"
+    },
+    "results/alpha4_adapt_len/metrics.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha4_adapt_len/metrics.jsonl",
+      "source_sha256": "0d858b74c169e3ab62febc942b28b03005a91f1dc09f57efb5c0751faa85dfac",
+      "sha256": "0d858b74c169e3ab62febc942b28b03005a91f1dc09f57efb5c0751faa85dfac",
+      "operation": "verbatim copy"
+    },
+    "results/alpha4_adapt_len/probe.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha4_adapt_len/probe.jsonl",
+      "source_sha256": "076f1ee3ff8f11985f9120aec3412c9194cf2860691212665fc1249801fcb6e7",
+      "sha256": "076f1ee3ff8f11985f9120aec3412c9194cf2860691212665fc1249801fcb6e7",
+      "operation": "verbatim copy"
+    },
+    "results/alpha4_adapt_len/stages.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha4_adapt_len/stages.jsonl",
+      "source_sha256": "4cfb61a3840487f1440a4a83ef524ce4f2908543f6e8505d1b12e823be017b29",
+      "sha256": "4cfb61a3840487f1440a4a83ef524ce4f2908543f6e8505d1b12e823be017b29",
+      "operation": "verbatim copy"
+    },
+    "results/alpha4_adapt_len/completion.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha4_adapt_len/completion.json",
+      "source_sha256": "260aa540bb8eb81843c0d05f5b3fb6ef2dde488c4abb63207eb2a2a315ba9578",
+      "sha256": "260aa540bb8eb81843c0d05f5b3fb6ef2dde488c4abb63207eb2a2a315ba9578",
+      "operation": "verbatim copy"
+    },
+    "results/alpha4_adapt_len/probe_logprobs.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha4_adapt_len/probe_samples.jsonl",
+      "source_sha256": "bceeaded2384fcb8bb8230b71b4231d5f610f78ed1cd70a0d6a6690915d0d8e2",
+      "sha256": "4368d94cbf977fecb8ac473cd286a4d0a7430ab82374ec81fd18b881ef3409e4",
+      "operation": "Retain step, sequence log probabilities and grades; omit response token arrays."
+    },
+    "results/evaluation_alpha4/questions.jsonl": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/evaluation_alpha4/samples.jsonl",
+      "source_sha256": "27a34a36be5a0a7c5884defa1a986f67dccc92905df9ecf8f0e2d1431b3d1b83",
+      "sha256": "2c00375261d76b2c5808004e6905082cab9c9f2fe162556286db12888ecbcd88",
+      "operation": "Per-question grading counts, response lengths and generated-token totals; original order retained."
+    },
+    "results/evaluation_alpha4/config.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/evaluation_alpha4/config.json",
+      "source_sha256": "5c95cc303c3d07983e50664a91c92a87992bc438c7efa7b7ea347c1634f0e1a6",
+      "sha256": "5c95cc303c3d07983e50664a91c92a87992bc438c7efa7b7ea347c1634f0e1a6",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation_alpha4/completion.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/evaluation_alpha4/completion.json",
+      "source_sha256": "a3b78c6934443e5b7386d09c297ba7b42ef0a91dc32eab243f231e43d63cd37f",
+      "sha256": "a3b78c6934443e5b7386d09c297ba7b42ef0a91dc32eab243f231e43d63cd37f",
+      "operation": "verbatim copy"
+    },
+    "results/loss_audit.json": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/loss_audit.json",
+      "source_sha256": "db0094b166370968efcaad0a0e33e369b74241dcde8cd44cbc338b76c8be827c",
+      "sha256": "db0094b166370968efcaad0a0e33e369b74241dcde8cd44cbc338b76c8be827c",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/train.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/source/train.py",
+      "source_sha256": "8cb852cb2389c5ddc51f0dc548840270aa83b30baf55a6fe168c4115f3137e66",
+      "sha256": "8cb852cb2389c5ddc51f0dc548840270aa83b30baf55a6fe168c4115f3137e66",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/evaluation.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/source/evaluation.py",
+      "source_sha256": "45e1a0353a18fc1f2638ed1fdeb8cb4ffe76870ab27b8fc1fcf6678ac0fff837",
+      "sha256": "45e1a0353a18fc1f2638ed1fdeb8cb4ffe76870ab27b8fc1fcf6678ac0fff837",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/diagnostics.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/source/diagnostics.py",
+      "source_sha256": "e18b7f1af488787f17769bddf1ea3757f53e49390e12443f1790e07efc4d2001",
+      "sha256": "e18b7f1af488787f17769bddf1ea3757f53e49390e12443f1790e07efc4d2001",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/common.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/source/common.py",
+      "source_sha256": "037feaf2b387527b9c19394523e12642534502a07ea510ad2944c1216ceabfd6",
+      "sha256": "037feaf2b387527b9c19394523e12642534502a07ea510ad2944c1216ceabfd6",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/hf_policy.py": {
+      "source": "scratch_experiments/10_rloo_adapt_len/results/alpha2_adapt_len/source/hf_policy.py",
+      "source_sha256": "d83fcfec4c505cc2f48b0b537b12dd3a02d2f9c283d93e5a87123bb98ec1099b",
+      "sha256": "d83fcfec4c505cc2f48b0b537b12dd3a02d2f9c283d93e5a87123bb98ec1099b",
+      "operation": "verbatim copy"
+    }
+  }
+}

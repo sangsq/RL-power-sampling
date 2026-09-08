@@ -7,11 +7,14 @@ models/
 
 # Local agent activity and scratch state
 /agent/
+/scratch*
+/tinker/
 /AGENTS.md
 /agents.md
 
 # Model weights, adapters, optimizer states, and checkpoint directories
-checkpoints/
+**/checkpoints/*
+!**/checkpoints/.gitkeep
 checkpoint/
 checkpoint-*/
 chpoints/
@@ -22,3 +25,13 @@ ckpts/
 *.pth
 pytorch_model*.bin
 adapter_model*.bin
+
+# Raw experimental evidence and execution state (preserved locally)
+/experiments/**/results/**/raw/
+/experiments/**/results/**/rollouts.jsonl
+/experiments/**/results/**/probe_samples.jsonl
+/experiments/**/results/**/fixed_probe.json
+/experiments/**/results/**/accuracy_responses.jsonl
+/experiments/**/results/**/samples.jsonl
+/experiments/**/results/**/*.log
+/experiments/**/results/**/queue.lock

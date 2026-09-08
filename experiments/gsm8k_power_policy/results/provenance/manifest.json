@@ -1,0 +1,179 @@
+{
+  "description": "Historical source paths identify local provenance only; report generation needs no scratch files. Original raw outputs and checkpoints are preserved locally. Active scripts may be updated after migration; hashes describe imported evidence.",
+  "files": {
+    "scripts/train.py": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/scripts/train.py",
+      "source_sha256": "189cebe91dc51174d0f2f356c1e4e17b52413be9ce3bdbe3a09e1fc9b7172ad3",
+      "sha256": "189cebe91dc51174d0f2f356c1e4e17b52413be9ce3bdbe3a09e1fc9b7172ad3",
+      "operation": "verbatim copy"
+    },
+    "scripts/monitor_accuracy.py": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/scripts/monitor_accuracy.py",
+      "source_sha256": "c9595b341e44c29271aa394010a21919f316016f8fe503b11ac4b515ee885e3a",
+      "sha256": "c9595b341e44c29271aa394010a21919f316016f8fe503b11ac4b515ee885e3a",
+      "operation": "verbatim copy"
+    },
+    "scripts/run_train.sh": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/scripts/run_train.sh",
+      "source_sha256": "8ea09f45053fd6b4afe10d570d14b6a1cfbe2ec84d03d90f8ac5b024af7e5d0d",
+      "sha256": "8ea09f45053fd6b4afe10d570d14b6a1cfbe2ec84d03d90f8ac5b024af7e5d0d",
+      "operation": "verbatim copy"
+    },
+    "scripts/prompts/paper_math.prompt": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/scripts/prompts/paper_math.prompt",
+      "source_sha256": "9f1248c8f54bedf02f587d19b8c1a1260ad4a9e8ee75a88e1b4590bd0a41e4ac",
+      "sha256": "9f1248c8f54bedf02f587d19b8c1a1260ad4a9e8ee75a88e1b4590bd0a41e4ac",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/questions/base_t1.jsonl": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/raw/test/base_t1.jsonl",
+      "source_sha256": "ce3a66ddf24196df80e3ecfd2ea7f54f284e19d2cff00607bb8727aafc2ccadc",
+      "sha256": "285020926b49b378a57f17459b558384a2f12017f6e23d544999e272d038bdf3",
+      "operation": "Per-question grading counts, response lengths and generated-token totals; original order retained."
+    },
+    "results/evaluation/test/base_t1/config.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/test/base_t1/config.json",
+      "source_sha256": "5441180f96f7644884a3acf9d1214b6a94e2421f8eb33df6a562a810ac759dba",
+      "sha256": "5441180f96f7644884a3acf9d1214b6a94e2421f8eb33df6a562a810ac759dba",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/test/base_t1/completion.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/test/base_t1/completion.json",
+      "source_sha256": "11c139bcc0b42a5fdefef701e2728d853603b61b7ad8edb8c11e672e7da146b5",
+      "sha256": "11c139bcc0b42a5fdefef701e2728d853603b61b7ad8edb8c11e672e7da146b5",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/questions/base_t0.25.jsonl": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/raw/test/base_t0.25.jsonl",
+      "source_sha256": "824697c85181751d1983d14b938ff5bda9e5e58b705fdfb5bbdefaf769872c9e",
+      "sha256": "1d9d1a6f3323fab7a53819edd060fde53948f01bdfdfa8d1365fd6dcae650f0b",
+      "operation": "Per-question grading counts, response lengths and generated-token totals; original order retained."
+    },
+    "results/evaluation/test/base_t0.25/config.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/test/base_t0.25/config.json",
+      "source_sha256": "f983da43bcf63f83bc9a6d662f273a5450d24f352cc3bb554de2e7fb451c936b",
+      "sha256": "f983da43bcf63f83bc9a6d662f273a5450d24f352cc3bb554de2e7fb451c936b",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/test/base_t0.25/completion.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/test/base_t0.25/completion.json",
+      "source_sha256": "112889a589eb29d2d1acf7e2f7cba4c408b00e3b2634d93fb4e9895af8ddd554",
+      "sha256": "112889a589eb29d2d1acf7e2f7cba4c408b00e3b2634d93fb4e9895af8ddd554",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/questions/policy_alpha2.jsonl": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/raw/test/policy_alpha2.jsonl",
+      "source_sha256": "7dcd00d1c3d9996095d7716275471c7f1b8ba6f0ab36b7a231f19af172694ac7",
+      "sha256": "b2bd1408fbf2c2d6c0e61ef57400611791d0229ec0809731a4df5cbfe42886b3",
+      "operation": "Per-question grading counts, response lengths and generated-token totals; original order retained."
+    },
+    "results/evaluation/test/policy_alpha2/config.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/test/policy_alpha2/config.json",
+      "source_sha256": "9858bbf7ddec5a736e1332d96f29967a5eda9368cc89a97050c213ac2eaadee9",
+      "sha256": "9858bbf7ddec5a736e1332d96f29967a5eda9368cc89a97050c213ac2eaadee9",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/test/policy_alpha2/completion.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/test/policy_alpha2/completion.json",
+      "source_sha256": "2fb774d613b5f2babe200fe310b392bc88e13dc31e403c9878abcdb9eb405ea2",
+      "sha256": "2fb774d613b5f2babe200fe310b392bc88e13dc31e403c9878abcdb9eb405ea2",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/questions/mcmc_alpha2.jsonl": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/raw/test/mcmc_alpha2.jsonl",
+      "source_sha256": "380cc1069bd801eae1efe63f5c14b93603c1736db3ae4a028f2ab55a9f1ea9d1",
+      "sha256": "06005e03b2d55b5bfe07afb6db2b33f9a35ad8cf417f17e3f1dc6773f7573787",
+      "operation": "Per-question grading counts, response lengths and generated-token totals; original order retained."
+    },
+    "results/evaluation/test/mcmc_alpha2/config.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/test/mcmc_alpha2/config.json",
+      "source_sha256": "d5752ac4b60efa1d6d6354a3f66517d2113beb51b01464e207494307735639b3",
+      "sha256": "d5752ac4b60efa1d6d6354a3f66517d2113beb51b01464e207494307735639b3",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/test/mcmc_alpha2/completion.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/test/mcmc_alpha2/completion.json",
+      "source_sha256": "d7f7e145c84b0a2773a29a1ce68df3300b4dafd84ef9e4b14a07f7095e584ea7",
+      "sha256": "d7f7e145c84b0a2773a29a1ce68df3300b4dafd84ef9e4b14a07f7095e584ea7",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/protocol.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/protocol.json",
+      "source_sha256": "8cf25c45f72a7f8e3fd50058256f8d6db123437f78d05622d9af479ab66d36ca",
+      "sha256": "8cf25c45f72a7f8e3fd50058256f8d6db123437f78d05622d9af479ab66d36ca",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/environment.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/environment.json",
+      "source_sha256": "820cdcf6dd181f4ad656c9f5f04f1350ed5d435c8f003fd72c8801dd1f3d3f1e",
+      "sha256": "820cdcf6dd181f4ad656c9f5f04f1350ed5d435c8f003fd72c8801dd1f3d3f1e",
+      "operation": "verbatim copy"
+    },
+    "results/evaluation/temperature_selection.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_05_evaluation/temperature_selection.json",
+      "source_sha256": "eb2de63765cb12899c2dc1cc5ce2a1fb27c4cb11d6986c68a05bc2f34686274f",
+      "sha256": "eb2de63765cb12899c2dc1cc5ce2a1fb27c4cb11d6986c68a05bc2f34686274f",
+      "operation": "verbatim copy"
+    },
+    "results/fixed512_alpha2/config.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/config.json",
+      "source_sha256": "e40a53c0213cc03d6edd62e196c2945774a8a0e4764a2d2bf310637a4315bc7b",
+      "sha256": "e40a53c0213cc03d6edd62e196c2945774a8a0e4764a2d2bf310637a4315bc7b",
+      "operation": "verbatim copy"
+    },
+    "results/fixed512_alpha2/metrics.jsonl": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/metrics.jsonl",
+      "source_sha256": "c6a682b237712a0131384b06215f0cc4fb8604bb4eca1890ef0474e863014669",
+      "sha256": "c6a682b237712a0131384b06215f0cc4fb8604bb4eca1890ef0474e863014669",
+      "operation": "verbatim copy"
+    },
+    "results/fixed512_alpha2/accuracy.jsonl": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/accuracy.jsonl",
+      "source_sha256": "36674d1fb8db05372a3d9afc953199cb0786af1621d09d39902ad0638a4780d0",
+      "sha256": "36674d1fb8db05372a3d9afc953199cb0786af1621d09d39902ad0638a4780d0",
+      "operation": "verbatim copy"
+    },
+    "results/fixed512_alpha2/training_summary.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/training_summary.json",
+      "source_sha256": "e4e1d4c51c2895edf7f96f0459afd5f0d61d663e7055bfb9c5b0ea943555bede",
+      "sha256": "e4e1d4c51c2895edf7f96f0459afd5f0d61d663e7055bfb9c5b0ea943555bede",
+      "operation": "verbatim copy"
+    },
+    "results/fixed512_alpha2/source_hashes.json": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/source_hashes.json",
+      "source_sha256": "d8b84df09c148f63776b7fb2b45db297b76fa2b6e14bf1317eae9b0ab0837ab9",
+      "sha256": "d8b84df09c148f63776b7fb2b45db297b76fa2b6e14bf1317eae9b0ab0837ab9",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/train.py": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/source/train.py",
+      "source_sha256": "3706150e8acc57e09349616b03250a9e1cf3c9249e63fb662e8e6f6ab5237bb7",
+      "sha256": "3706150e8acc57e09349616b03250a9e1cf3c9249e63fb662e8e6f6ab5237bb7",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/monitor_accuracy.py": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/source/monitor_accuracy.py",
+      "source_sha256": "34e84a1dd3d571f5a9e2698ed5c7fcb7be59a64d2e0d8a51a9001bb0b8955566",
+      "sha256": "34e84a1dd3d571f5a9e2698ed5c7fcb7be59a64d2e0d8a51a9001bb0b8955566",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/analyze.py": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/source/analyze.py",
+      "source_sha256": "78e99d878eb4c946561a04874e52f00be951a6ff50283479130995a8d14c50d7",
+      "sha256": "78e99d878eb4c946561a04874e52f00be951a6ff50283479130995a8d14c50d7",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/grading.py": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/source/grading.py",
+      "source_sha256": "512502e99e857503108f968fd2ce53f16b5de50fcc51c963b2da37f21ee38136",
+      "sha256": "512502e99e857503108f968fd2ce53f16b5de50fcc51c963b2da37f21ee38136",
+      "operation": "verbatim copy"
+    },
+    "results/provenance/source/hf_policy.py": {
+      "source": "scratch_experiments/03_gsm8k_power_policy/results/03_paper_alpha2_seed0/source/hf_policy.py",
+      "source_sha256": "e69b5cad2e9f74a473d41abe58fc2a28d7f839305f5d1794afac0966e07d3a07",
+      "sha256": "e69b5cad2e9f74a473d41abe58fc2a28d7f839305f5d1794afac0966e07d3a07",
+      "operation": "verbatim copy"
+    }
+  }
+}

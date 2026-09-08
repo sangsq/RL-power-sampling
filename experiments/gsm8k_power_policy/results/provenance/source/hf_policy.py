@@ -12,17 +12,17 @@ MODEL = "Qwen/Qwen2.5-0.5B"
 REVISION = "060db6499f32faf8b98477b0a26969ef7d8b9987"
 
 
-def load_policy(adapter=None, trainable=False, model_id=MODEL, revision=REVISION):
+def load_policy(adapter=None, trainable=False):
     from peft import LoraConfig, PeftModel, get_peft_model
 
     if os.environ.get("CUDA_VISIBLE_DEVICES") != "1":
         raise RuntimeError("Expose only physical GPU 1: CUDA_VISIBLE_DEVICES=1")
     torch.set_num_threads(4)
     model = AutoModelForCausalLM.from_pretrained(
-        model_id, revision=revision, local_files_only=True, dtype=torch.bfloat16,
+        MODEL, revision=REVISION, local_files_only=True, dtype=torch.bfloat16,
         attn_implementation="sdpa",
     ).to("cuda")
-    tokenizer = AutoTokenizer.from_pretrained(model_id, revision=revision, local_files_only=True)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL, revision=REVISION, local_files_only=True)
     tokenizer.padding_side = "left"
     tokenizer.pad_token = tokenizer.eos_token
     if adapter:
@@ -105,36 +105,18 @@ def response_batch(prompts, responses, pad_id, device):
 
 def sequence_logprobs(model, prompts, responses, pad_id):
     ids, attention, labels, mask = response_batch(prompts, responses, pad_id, model.device)
-    # Prompt-only positions do not contribute to the objective or need vocabulary logits.
-    positions = mask.any(dim=0).nonzero(as_tuple=True)[0]
-    logits = model(input_ids=ids, attention_mask=attention, use_cache=False,
-                   logits_to_keep=positions).logits
-    labels, mask = labels[:, positions], mask[:, positions]
+    logits = model(input_ids=ids, attention_mask=attention, use_cache=False).logits
     logprobs = -F.cross_entropy(logits.float().transpose(1, 2), labels, reduction="none")
     return (logprobs * mask).sum(dim=1)
 
 
 @torch.no_grad()
-def score(model, prompts, responses, pad_id, batch_size=2, reference=False, token_budget=None):
+def score(model, prompts, responses, pad_id, batch_size=2, reference=False):
     with model.disable_adapter() if reference else nullcontext():
         return torch.cat([
-            sequence_logprobs(model, prompts[i:j], responses[i:j], pad_id)
-            for i, j in scoring_ranges(prompts, responses, batch_size, token_budget)
+            sequence_logprobs(model, prompts[i:i + batch_size], responses[i:i + batch_size], pad_id)
+            for i in range(0, len(prompts), batch_size)
         ])
-
-
-def scoring_ranges(prompts, responses, batch_size, token_budget=None):
-    """Keep short examples batched while bounding padded tokens for long prompts."""
-    start = 0
-    while start < len(prompts):
-        end, width = start, 0
-        while end < min(start+batch_size, len(prompts)):
-            next_width = max(width, len(prompts[end])+len(responses[end]))
-            if end > start and token_budget and next_width*(end-start+1) > token_budget:
-                break
-            end, width = end+1, next_width
-        yield start, end
-        start = end
 
 
 def leave_one_out(scores, group_size):
@@ -144,42 +126,30 @@ def leave_one_out(scores, group_size):
     return (grouped - (grouped.sum(dim=1, keepdim=True) - grouped) / (group_size - 1)).flatten()
 
 
-def update(model, optimizer, prompts, responses, pad_id, group_size=4, alpha=2.0, microbatch=2,
-           token_budget=None):
-    """Accumulate a fresh rollout batch, then clip and step once.
-
-    RLOO groups are formed before memory-sized microbatches. Each backward
-    loss divides by the full response count, including uneven microbatches.
-    """
+def update(model, optimizer, prompts, responses, pad_id, group_size=4, alpha=2.0, microbatch=2):
+    """One update on one fresh batch; sequence sums, no advantage normalization."""
     model.eval()  # Keep dropout disabled even in the differentiable forward.
-    old = score(model, prompts, responses, pad_id, microbatch, token_budget=token_budget)
-    base = score(model, prompts, responses, pad_id, microbatch, reference=True, token_budget=token_budget)
+    old = score(model, prompts, responses, pad_id, microbatch)
+    base = score(model, prompts, responses, pad_id, microbatch, reference=True)
     values = alpha * base - old
     advantage = leave_one_out(values, group_size)
     optimizer.zero_grad(set_to_none=True)
-    surrogate = 0.0
-    backward_microbatches = 0
-    for i, j in scoring_ranges(prompts, responses, microbatch, token_budget):
-        current = sequence_logprobs(model, prompts[i:j], responses[i:j], pad_id)
-        loss = -(advantage[i:j] * current).sum() / len(prompts)
+    for i in range(0, len(prompts), microbatch):
+        current = sequence_logprobs(model, prompts[i:i + microbatch], responses[i:i + microbatch], pad_id)
+        loss = -(advantage[i:i + microbatch] * current).sum() / len(prompts)
         if not torch.isfinite(loss):
             raise FloatingPointError("Nonfinite policy-gradient loss")
-        surrogate += loss.detach().item()
         loss.backward()
-        backward_microbatches += 1
     norm = torch.nn.utils.clip_grad_norm_(
         [p for p in model.parameters() if p.requires_grad], 1.0, error_if_nonfinite=True,
     )
     optimizer.step()
     return {
-        "objective": values.mean().item(), "true_loss_without_log_z": -values.mean().item(),
-        "surrogate_loss": surrogate, "base_logprob": base.mean().item(),
+        "objective": values.mean().item(), "base_logprob": base.mean().item(),
         "policy_logprob": old.mean().item(), "kl_estimate": (old - base).mean().item(),
         "sequence_entropy": -old.mean().item(), "score_std": values.std().item(),
         "advantage_std": advantage.std().item(), "gradient_norm": norm.item(),
         "gradient_clipped": norm.item() > 1.0,
-        "effective_batch_responses": len(prompts),
-        "backward_microbatches": backward_microbatches,
         "old_logprobs": old.tolist(), "base_logprobs": base.tolist(),
         "advantages": advantage.tolist(),
     }

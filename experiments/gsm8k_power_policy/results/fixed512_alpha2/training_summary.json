@@ -1,0 +1,20 @@
+{
+  "completed_steps": 240,
+  "reason": "time_budget",
+  "wall_seconds": 3520.1875149799744,
+  "final_checkpoint": "/home/sqsang/ml/power_sampling/experiments/gsm8k_power_policy/checkpoints/03_paper_alpha2_seed0/final",
+  "max_seconds": 3570.0,
+  "evaluation_steps": [
+    0,
+    32,
+    64,
+    96,
+    128,
+    160,
+    192,
+    224,
+    240
+  ],
+  "evaluation_seconds": 47.457066643983126,
+  "final_evaluation_complete": true
+}

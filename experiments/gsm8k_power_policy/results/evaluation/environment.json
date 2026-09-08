@@ -1,0 +1,25 @@
+{
+  "versions": {
+    "vllm": "0.19.1",
+    "torch": "2.10.0",
+    "transformers": "5.7.0",
+    "peft": "0.20.0"
+  },
+  "physical_gpu": 1,
+  "engine": {
+    "dtype": "bfloat16",
+    "max_model_len": 1024,
+    "max_num_seqs": 256,
+    "max_num_batched_tokens": 4096,
+    "gpu_memory_utilization": 0.75,
+    "enforce_eager": true,
+    "enable_prefix_caching": true,
+    "generation_config": "vllm",
+    "enable_lora": true,
+    "max_loras": 2,
+    "max_lora_rank": 8,
+    "lora_dtype": "bfloat16",
+    "logprobs_mode": "processed_logprobs"
+  },
+  "pid": 3473990
+}

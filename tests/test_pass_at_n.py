@@ -1,9 +1,10 @@
+from importlib import import_module
 """Check the finite-sample pass@N estimator against exhaustive subsets."""
 
 import itertools
 import pytest
 
-from experiments.gsm8k_power_policy.pass_at_n import pass_at_k
+from power_sampling.evaluation import pass_at_k
 
 
 def test_pass_at_k_enumerated_subsets():

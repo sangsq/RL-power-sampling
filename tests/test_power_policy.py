@@ -1,3 +1,4 @@
+from importlib import import_module
 """Probability, masking, and frozen-reference checks without CUDA or downloads."""
 
 import copy
@@ -55,12 +56,29 @@ def test_eos_and_response_mask():
         leave_one_out(torch.ones(3), 2)
 
 
+def test_response_only_logits_match_full_teacher_forcing():
+    model, _ = tiny_policy()
+    prompts, responses = [[1, 2, 3, 4, 5], [6, 7]], [[8, 0], [9, 10, 11, 0]]
+    ids, attention, labels, mask = response_batch(prompts, responses, 0, 'cpu')
+    full = model(input_ids=ids, attention_mask=attention, use_cache=False).logits
+    expected = (-torch.nn.functional.cross_entropy(full.transpose(1, 2), labels, reduction='none')*mask).sum(1)
+    actual = sequence_logprobs(model, prompts, responses, 0)
+    torch.testing.assert_close(actual, expected)
+    parameters = [p for p in model.parameters() if p.requires_grad]
+    expected_grad = torch.autograd.grad(expected.sum(), parameters)
+    actual_grad = torch.autograd.grad(actual.sum(), parameters)
+    for a, b in zip(actual_grad, expected_grad):
+        torch.testing.assert_close(a, b, atol=1e-6, rtol=1e-5)
+
+
 def test_batch_scores_and_microbatch_gradients():
     model, _ = tiny_policy()
     qs, xs = [[1, 2], [3], [4, 5, 6], [7]], [[8, 0], [9, 10, 0], [11, 12], [0]]
     batched = score(model, qs, xs, 0, batch_size=4)
     single = score(model, qs, xs, 0, batch_size=1)
     torch.testing.assert_close(batched, single, atol=2e-6, rtol=2e-6)
+    bounded = score(model, qs, xs, 0, batch_size=4, token_budget=10)
+    torch.testing.assert_close(batched, bounded, atol=2e-6, rtol=2e-6)
     weights = torch.tensor([1.2, -.5, .7, -1.4])
     parameters = [p for p in model.parameters() if p.requires_grad]
     def grads(microbatch):
@@ -106,18 +124,19 @@ def test_identity_reference_and_checkpoint(tmp_path):
 
 
 def test_explicit_answer_sensitivity():
-    from experiments.gsm8k_power_policy.analyze import extract_explicit_answer, relaxed_correct
+    from power_sampling.evaluation import extract_explicit_answer, answer_scores
     assert extract_explicit_answer("Work 12 + 60 = 72") is None
     assert extract_explicit_answer("#### 72\nThe answer is: 72") == "72"
     assert extract_explicit_answer("The answer is: $1,234.5 dollars.") == "1,234.5"
     assert extract_explicit_answer("The final answer = -1/2") == "-1/2"
     assert extract_explicit_answer("Answer: unknown, though 72 was mentioned") is None
     assert extract_explicit_answer(r"\boxed{7}; #### 72") == "7"
-    assert relaxed_correct({"responses": ["#### 72", "answer is 7", "calculated 72"], "ground_truth": "72"}) == [True, False, False]
+    assert [answer_scores(text, "72")["answer_correct"] for text in ["#### 72", "answer is 7", "calculated 72"]] == [True, False, False]
 
 
 def test_training_prompt_and_epoch_order():
-    from experiments.gsm8k_power_policy.train import epoch_indices, format_prompt
+    epoch_indices = import_module("experiments.gsm8k_power_policy.scripts.train").epoch_indices
+    format_prompt = import_module("experiments.gsm8k_power_policy.scripts.train").format_prompt
     template = r"Solve the following question step by step and place final result in \box{}: {question}"
     assert format_prompt(template, "What is {2 + 3}?") == (
         r"Solve the following question step by step and place final result in \box{}: What is {2 + 3}?"
@@ -131,3 +150,73 @@ def test_training_prompt_and_epoch_order():
     assert order == epoch_indices(indices, 0, 1)
     assert indices == list(range(1024))
     assert all(len(set(order[i:i+16])) == 16 for i in range(0, 1024, 16))
+
+
+def test_stop_string_retains_delimiter_without_padding():
+    class Tokenizer:
+        pieces = {0: "", 1: "work", 2: "</", 3: "answer", 4: ">\n", 5: "more"}
+
+        def decode(self, tokens, **kwargs):
+            return "".join(self.pieces[token] for token in tokens)
+
+    tokenizer = Tokenizer()
+    assert trim_response([1, 2, 3, 4, 0, 0], 0, tokenizer, "</answer>") == [1, 2, 3, 4]
+    assert trim_response([1, 0, 0], 0, tokenizer, "</answer>") == [1, 0]
+    assert trim_response([1, 2, 3], 0, tokenizer, "</answer>") == [1, 2, 3]
+
+
+def test_r1_answer_contract():
+    from power_sampling.r1_grading import r1_grade
+
+    assert r1_grade(" 2+3=5 </think> <answer> 5 </answer>", "5")["correct"]
+    assert r1_grade(r" done </think> <answer> \boxed{1,200} </answer>", "1200")["correct"]
+    assert not r1_grade(" 5 </think> <answer> 5", "5")["answer_correct"]
+    assert not r1_grade(" 5 </think> <answer> 6 </answer>", "5")["correct"]
+    assert not r1_grade("<answer> 5 </answer>", "5")["correct"]
+    assert r1_grade("<answer> 5 </answer>", "5")["answer_correct"]
+    assert not r1_grade("x </think> <answer> 6 </answer> <answer> 5 </answer>", "5")["correct"]
+
+
+def test_paper_prompt_and_monitor_grading():
+    format_prompt = import_module("experiments.gsm8k_power_policy.scripts.train").format_prompt
+    answer_scores = import_module("experiments.gsm8k_power_policy.scripts.monitor_accuracy").answer_scores
+    template = r"Can you solve the following math problem? {question} Please reason step by step, and put your final answer within \boxed{{}}."
+    assert format_prompt(template, "Compute {2+3}.").endswith(r"\boxed{{}}.")
+    assert "Compute {2+3}." in format_prompt(template, "Compute {2+3}.")
+    assert answer_scores(r"\boxed{{5}}", "5")["answer_correct"]
+    assert not answer_scores(r"\boxed{{5}}", "5")["boxed_correct"]
+    assert answer_scores("The final answer is: 5", "5")["answer_correct"]
+    assert not answer_scores("We calculated 5 along the way", "5")["answer_correct"]
+
+
+def test_accuracy_monitor_restores_rng_on_success_and_timeout(monkeypatch, tmp_path):
+    import random
+    import time
+    from types import SimpleNamespace
+    monitor = import_module("experiments.gsm8k_power_policy.scripts.monitor_accuracy")
+    model = SimpleNamespace(device=torch.device("cpu"))
+    tokenizer = SimpleNamespace(decode=lambda tokens, **kwargs: r"\boxed{5}")
+    args = SimpleNamespace(eval_seed=123, max_tokens=512, generation_batch=64, stop_string=None)
+    torch_state, python_state = torch.get_rng_state().clone(), random.getstate()
+
+    def fake_generate(*args, **kwargs):
+        torch.rand(7)
+        random.random()
+        return [[5, 0]]
+
+    monkeypatch.setattr(monitor, "generate", fake_generate)
+    kwargs = dict(step=0, args=args, folder=tmp_path, started=time.monotonic(), deadline=time.monotonic() + 60)
+    result = monitor.evaluate_accuracy(model, tokenizer, [{"question": "2+3?", "answer": "#### 5"}], [[1]], **kwargs)
+    assert result["answer_accuracy"] == 1
+    assert torch.equal(torch_state, torch.get_rng_state())
+    assert python_state == random.getstate()
+
+    def fail_generate(*args, **kwargs):
+        fake_generate()
+        raise TimeoutError("Simulated deadline")
+
+    monkeypatch.setattr(monitor, "generate", fail_generate)
+    with pytest.raises(TimeoutError):
+        monitor.evaluate_accuracy(model, tokenizer, [{"question": "2+3?", "answer": "#### 5"}], [[1]], **kwargs)
+    assert torch.equal(torch_state, torch.get_rng_state())
+    assert python_state == random.getstate()

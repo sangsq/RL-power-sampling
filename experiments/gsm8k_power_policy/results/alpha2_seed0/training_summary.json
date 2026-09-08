@@ -1,7 +1,0 @@
-{
-  "completed_steps": 158,
-  "reason": "time_budget",
-  "wall_seconds": 1654.6200876330258,
-  "final_checkpoint": "/home/sqsang/ml/power_sampling/experiments/gsm8k_power_policy/checkpoints/alpha2_seed0/final",
-  "max_seconds": 1680.0
-}

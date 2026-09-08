@@ -1,0 +1,384 @@
+{
+  "definitions": {
+    "policy_nll": "E_pi[-log pi(y|x)] (policy entropy)",
+    "reference_ce": "E_pi[-log p0(y|x)]",
+    "true_loss": "alpha * reference_ce - policy_nll",
+    "base_kl": "reference_ce - policy_nll = E_pi[log pi - log p0]"
+  },
+  "units": "Nats per response; no token-length normalization.",
+  "uncertainty": "Pointwise 1.96 times question SE; four responses are averaged within each question.",
+  "runs": {
+    "2": {
+      "points": [
+        {
+          "step": 0,
+          "elapsed_minutes": 0.21839791066595354,
+          "policy_nll": {
+            "mean": 250.83777129650116,
+            "question_se": 43.59800015578652
+          },
+          "reference_ce": {
+            "mean": 250.83777129650116,
+            "question_se": 43.59800015578652
+          },
+          "true_loss": {
+            "mean": 250.83777129650116,
+            "question_se": 43.59800015578652
+          },
+          "base_kl": {
+            "mean": 0.0,
+            "question_se": 0.0
+          }
+        },
+        {
+          "step": 38,
+          "elapsed_minutes": 2.072400520099715,
+          "policy_nll": {
+            "mean": 132.13580644130707,
+            "question_se": 21.914142634086033
+          },
+          "reference_ce": {
+            "mean": 133.43263086676598,
+            "question_se": 21.92858354392756
+          },
+          "true_loss": {
+            "mean": 134.72945529222488,
+            "question_se": 21.944924778123738
+          },
+          "base_kl": {
+            "mean": 1.296824425458908,
+            "question_se": 0.2047173888014962
+          }
+        },
+        {
+          "step": 76,
+          "elapsed_minutes": 8.116701837283715,
+          "policy_nll": {
+            "mean": 91.1604031920433,
+            "question_se": 26.077208391086145
+          },
+          "reference_ce": {
+            "mean": 96.64270436763763,
+            "question_se": 26.0600212122861
+          },
+          "true_loss": {
+            "mean": 102.12500554323196,
+            "question_se": 26.048962026247356
+          },
+          "base_kl": {
+            "mean": 5.48230117559433,
+            "question_se": 0.39988057430157753
+          }
+        },
+        {
+          "step": 114,
+          "elapsed_minutes": 14.80223003543409,
+          "policy_nll": {
+            "mean": 53.03095878660679,
+            "question_se": 11.241260560570346
+          },
+          "reference_ce": {
+            "mean": 62.99753177165985,
+            "question_se": 11.741128392600974
+          },
+          "true_loss": {
+            "mean": 72.96410475671291,
+            "question_se": 12.28123507450183
+          },
+          "base_kl": {
+            "mean": 9.966572985053062,
+            "question_se": 0.8621142855581236
+          }
+        },
+        {
+          "step": 152,
+          "elapsed_minutes": 22.22894894121564,
+          "policy_nll": {
+            "mean": 36.21306198090315,
+            "question_se": 6.007903106171513
+          },
+          "reference_ce": {
+            "mean": 47.815044313669205,
+            "question_se": 6.699601783049092
+          },
+          "true_loss": {
+            "mean": 59.41702664643526,
+            "question_se": 7.440660172556307
+          },
+          "base_kl": {
+            "mean": 11.601982332766056,
+            "question_se": 0.9189655689256903
+          }
+        },
+        {
+          "step": 190,
+          "elapsed_minutes": 30.32369662193232,
+          "policy_nll": {
+            "mean": 36.76916915923357,
+            "question_se": 8.569819433127567
+          },
+          "reference_ce": {
+            "mean": 48.55098935961723,
+            "question_se": 9.10664555019832
+          },
+          "true_loss": {
+            "mean": 60.3328095600009,
+            "question_se": 9.659724693355656
+          },
+          "base_kl": {
+            "mean": 11.781820200383663,
+            "question_se": 0.6671206464884115
+          }
+        },
+        {
+          "step": 228,
+          "elapsed_minutes": 39.02948209414996,
+          "policy_nll": {
+            "mean": 32.78598749637604,
+            "question_se": 7.891386498111473
+          },
+          "reference_ce": {
+            "mean": 45.320751160383224,
+            "question_se": 8.735844775727664
+          },
+          "true_loss": {
+            "mean": 57.85551482439041,
+            "question_se": 9.623250116598046
+          },
+          "base_kl": {
+            "mean": 12.534763664007187,
+            "question_se": 1.06088542688731
+          }
+        },
+        {
+          "step": 266,
+          "elapsed_minutes": 48.41002636495008,
+          "policy_nll": {
+            "mean": 27.820772744715214,
+            "question_se": 5.000568064758305
+          },
+          "reference_ce": {
+            "mean": 40.065149769186974,
+            "question_se": 5.6362898929437355
+          },
+          "true_loss": {
+            "mean": 52.30952679365873,
+            "question_se": 6.337882138153585
+          },
+          "base_kl": {
+            "mean": 12.24437702447176,
+            "question_se": 0.9052357297432169
+          }
+        },
+        {
+          "step": 304,
+          "elapsed_minutes": 58.285325052517386,
+          "policy_nll": {
+            "mean": 26.350277863442898,
+            "question_se": 4.655452570625405
+          },
+          "reference_ce": {
+            "mean": 39.71535411477089,
+            "question_se": 5.5162688455757625
+          },
+          "true_loss": {
+            "mean": 53.08043036609888,
+            "question_se": 6.438052148959231
+          },
+          "base_kl": {
+            "mean": 13.365076251327991,
+            "question_se": 1.06379277980294
+          }
+        }
+      ],
+      "source": "experiments/rloo_adapt_len/results/alpha2_adapt_len/probe_logprobs.jsonl",
+      "source_sha256": "f8943204f0e092a457ce47d28aca11fb0e6c8c049e41a277fac28d139c182a04"
+    },
+    "4": {
+      "points": [
+        {
+          "step": 0,
+          "elapsed_minutes": 0.21924991463311017,
+          "policy_nll": {
+            "mean": 250.83777129650116,
+            "question_se": 43.59800015578652
+          },
+          "reference_ce": {
+            "mean": 250.83777129650116,
+            "question_se": 43.59800015578652
+          },
+          "true_loss": {
+            "mean": 752.5133138895035,
+            "question_se": 130.79400046735958
+          },
+          "base_kl": {
+            "mean": 0.0,
+            "question_se": 0.0
+          }
+        },
+        {
+          "step": 38,
+          "elapsed_minutes": 2.0679514171982496,
+          "policy_nll": {
+            "mean": 141.23605793714523,
+            "question_se": 25.24917148480418
+          },
+          "reference_ce": {
+            "mean": 142.78013455867767,
+            "question_se": 25.270436481409995
+          },
+          "true_loss": {
+            "mean": 429.88448029756546,
+            "question_se": 75.83289490392211
+          },
+          "base_kl": {
+            "mean": 1.5440766215324402,
+            "question_se": 0.11226306685406033
+          }
+        },
+        {
+          "step": 76,
+          "elapsed_minutes": 8.088487273833016,
+          "policy_nll": {
+            "mean": 81.59643906354904,
+            "question_se": 18.24033090136043
+          },
+          "reference_ce": {
+            "mean": 87.38293704390526,
+            "question_se": 18.462868025077213
+          },
+          "true_loss": {
+            "mean": 267.935309112072,
+            "question_se": 55.61497961818629
+          },
+          "base_kl": {
+            "mean": 5.786497980356216,
+            "question_se": 0.39529216018847835
+          }
+        },
+        {
+          "step": 114,
+          "elapsed_minutes": 14.739564385282574,
+          "policy_nll": {
+            "mean": 48.70838475227356,
+            "question_se": 10.087176925872823
+          },
+          "reference_ce": {
+            "mean": 58.78476879000664,
+            "question_se": 10.439829653060062
+          },
+          "true_loss": {
+            "mean": 186.430690407753,
+            "question_se": 31.701530624181927
+          },
+          "base_kl": {
+            "mean": 10.076384037733078,
+            "question_se": 0.7681049242423966
+          }
+        },
+        {
+          "step": 152,
+          "elapsed_minutes": 22.123196405166528,
+          "policy_nll": {
+            "mean": 34.33060859143734,
+            "question_se": 6.323212488696144
+          },
+          "reference_ce": {
+            "mean": 49.423007652163506,
+            "question_se": 7.229408388580364
+          },
+          "true_loss": {
+            "mean": 163.36142201721668,
+            "question_se": 22.642110654607738
+          },
+          "base_kl": {
+            "mean": 15.092399060726166,
+            "question_se": 1.1664128386420711
+          }
+        },
+        {
+          "step": 190,
+          "elapsed_minutes": 30.219316539533125,
+          "policy_nll": {
+            "mean": 24.53713032603264,
+            "question_se": 4.104036705342743
+          },
+          "reference_ce": {
+            "mean": 39.476406157016754,
+            "question_se": 4.998545530578257
+          },
+          "true_loss": {
+            "mean": 133.36849430203438,
+            "question_se": 15.940906653393414
+          },
+          "base_kl": {
+            "mean": 14.939275830984116,
+            "question_se": 1.0973112267535534
+          }
+        },
+        {
+          "step": 228,
+          "elapsed_minutes": 38.94909969863171,
+          "policy_nll": {
+            "mean": 21.689125262200832,
+            "question_se": 3.1893297870633845
+          },
+          "reference_ce": {
+            "mean": 36.90472088754177,
+            "question_se": 4.199056106468786
+          },
+          "true_loss": {
+            "mean": 125.92975828796625,
+            "question_se": 13.70897287720743
+          },
+          "base_kl": {
+            "mean": 15.215595625340939,
+            "question_se": 1.3102046211073963
+          }
+        },
+        {
+          "step": 266,
+          "elapsed_minutes": 48.25295158266478,
+          "policy_nll": {
+            "mean": 21.761205561459064,
+            "question_se": 3.0271440964404572
+          },
+          "reference_ce": {
+            "mean": 36.78661671280861,
+            "question_se": 3.8763564122675485
+          },
+          "true_loss": {
+            "mean": 125.38526128977537,
+            "question_se": 12.590772994910315
+          },
+          "base_kl": {
+            "mean": 15.025411151349545,
+            "question_se": 1.194225725320906
+          }
+        },
+        {
+          "step": 304,
+          "elapsed_minutes": 58.0333029033655,
+          "policy_nll": {
+            "mean": 26.081145383417606,
+            "question_se": 9.445139205722388
+          },
+          "reference_ce": {
+            "mean": 42.219173699617386,
+            "question_se": 9.97896747024688
+          },
+          "true_loss": {
+            "mean": 142.79554941505194,
+            "question_se": 30.565662360375804
+          },
+          "base_kl": {
+            "mean": 16.13802831619978,
+            "question_se": 1.3166413813156561
+          }
+        }
+      ],
+      "source": "experiments/rloo_adapt_len/results/alpha4_adapt_len/probe_logprobs.jsonl",
+      "source_sha256": "4368d94cbf977fecb8ac473cd286a4d0a7430ab82374ec81fd18b881ef3409e4"
+    }
+  }
+}

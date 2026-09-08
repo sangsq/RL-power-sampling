@@ -1,0 +1,9 @@
+{
+  "complete": true,
+  "steps": 304,
+  "stages_completed": 8,
+  "wall_seconds": 3482.094430494937,
+  "diagnostic_seconds": 127.0452314860886,
+  "within_requested_time_range": true,
+  "equal_stage_rollouts": true
+}

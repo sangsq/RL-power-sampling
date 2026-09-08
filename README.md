@@ -1,39 +1,34 @@
-# Reasoning by power distribution sampling
+# LLM reasoning via distribution sharpening
 
-## Introduction
-
-Experiments in reasoning by sequence-level power-shapening a transformer language model:
+Experiments in reasoning by sequence-level power-sharpening a transformer language model:
 $$
 p(\mathrm{response} \mid \mathrm{prompt}) \;\longrightarrow\; \frac{p(\mathrm{response} \mid \mathrm{prompt})^{\alpha}}{Z_{\alpha}}
 $$
 
-Power distribution is obtained via: 1. Markov Chain Monte Carlo (MCMC) power sampling, or 2. training an RL policy to variationally approximate the power distribution, without access to any true label.
+Power distribution is obtained via: 
+1. Markov Chain Monte Carlo (MCMC) power sampling, or 
+2. Training an RL policy to variationally approximate the power distribution, without having access to any true label. REINFORCE with Leave-One-Out (RLOO) is used to train the policy.
 
-**Models used:**
+**Model(s) used:**
 - Qwen2.5-0.5B
-- Qwen2.5-Math-1.5B
 
-**Datasets used:**
+**Dataset(s) used:**
 - GSM8K
-- MATH500
 
-## Current Results
+## Results
 
-Strict boxed-answer accuracy, averaged across decoding seeds:
+Answer pass@N on 500 GSM8K questions with Qwen2.5-0.5B, 32 samples per question and a 512-token cap.
 
-| Dataset / model | Base | Low temperature | MCMC power |
+| Method | Pass@1 | Pass@4 | Pass@32 |
 |---|---:|---:|---:|
-| GSM8K / Qwen2.5-0.5B | 12.03% | 29.09% | 32.95% |
-| MATH500 / Qwen2.5-Math-1.5B | 46.4% | 60.2% | 64.9% |
+| Base (T=1) | 16.71% | 41.48% | 76.40% |
+| Best low T (T=0.25) | 34.03% | 58.98% | 82.40% |
+| MCMC (α=2) | 38.93% | 65.82% | 86.80% |
+| RLOO | 38.56% | 59.25% | 85.80% |
 
-GSM8K six-sample voting reaches **39.98%** at a similar proposal-token budget
-to MCMC. The alpha-2 LoRA policy improves numeric accuracy over base T=1 but
-remains below low-temperature sampling. On a fixed 500-question subset, numeric
-pass@32 is **83.40%** for the policy versus **83.20%** for base T=0.3, with no
-clear difference. The alpha-4, 128-token policy has finished training;
-answer accuracy is not yet evaluated.
+RLOO improves pass@1 over low-temperature sampling and approaches MCMC's point estimate, but remains below MCMC at pass@4
 
-Protocols, uncertainty, and limitations are in the [E001–E005 experiment index](experiments/README.md).
+See the [report](experiments/rloo_adapt_len/report.ipynb) for full results.
 
 ## Project Structure
 

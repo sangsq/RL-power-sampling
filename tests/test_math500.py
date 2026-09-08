@@ -1,3 +1,4 @@
+from importlib import import_module
 import hashlib
 import json
 import random
@@ -6,18 +7,16 @@ from pathlib import Path
 import pytest
 import numpy as np
 
-from experiments.math500_qwen15b.analyze import bootstrap_delta
 from math500_sampling.grading import boxed_answer, grade, prompt
 from math500_sampling.paper_grading import paper_grade
 from math500_sampling.sampler import Chain, json_rng_state, mh_log_ratio, restore_rng_state
-from experiments.math500_qwen15b.run import compatible
 
 
-ROOT = Path(__file__).resolve().parents[1] / "experiments" / "math500_qwen15b"
+ROOT = Path(__file__).resolve().parents[1] / "data" / "math500"
 
 
 def test_official_dataset_identity():
-    path = ROOT / "data" / "MATH500.json"
+    path = ROOT / "MATH500.json"
     assert hashlib.sha256(path.read_bytes()).hexdigest() == "838cd5ffc217ee852f460a5c649ea4825f777e1b99c590b38fc500c6561e1e06"
     assert len(json.loads(path.read_text())) == 500
 
@@ -37,7 +36,7 @@ def test_nested_box_and_symbolic_grading():
 
 
 def test_all_targets_self_verify():
-    for example in json.loads((ROOT / "data" / "MATH500.json").read_text()):
+    for example in json.loads((ROOT / "MATH500.json").read_text()):
         assert grade(r"\boxed{" + example["answer"] + "}", example["answer"])[0]
         assert paper_grade(example["answer"], example["answer"])
 
@@ -69,16 +68,5 @@ def test_checkpoint_state_round_trip():
     assert [restored.random() for _ in range(4)] == expected
 
 
-def test_resume_allows_only_engine_changes():
-    old = {"alpha": 4, "max_num_seqs": 128, "gpu_memory_utilization": 0.9, "overwrite": False}
-    new = {"alpha": 4, "max_num_seqs": 64, "gpu_memory_utilization": 0.8, "overwrite": False}
-    assert compatible(old, new)
-    assert not compatible(old, {**new, "alpha": 2})
 
 
-def test_boolean_paired_bootstrap():
-    estimate, low, high = bootstrap_delta(
-        np.array([[True, False, True]]), np.array([[False, False, True]]), draws=100
-    )
-    assert estimate == pytest.approx(1 / 3)
-    assert low <= estimate <= high

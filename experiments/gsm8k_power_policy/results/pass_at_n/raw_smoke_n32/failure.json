@@ -1,5 +1,0 @@
-{
-  "stage": "vLLM engine initialization",
-  "error": "vLLM LoRAConfig rejects string lora_dtype=float32; no responses generated",
-  "resolution": "Validated and fixed BF16 adapter inference in a separate smoke run before formal sampling"
-}

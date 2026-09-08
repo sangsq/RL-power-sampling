@@ -1,0 +1,8 @@
+{"stage": 1, "max_new_tokens": 64, "updates": 38, "rollouts": 2432, "sampled_tokens": 154626, "update_seconds": 96.4489875518484, "median_update_seconds": 2.5327673145220615}
+{"stage": 2, "max_new_tokens": 128, "updates": 38, "rollouts": 2432, "sampled_tokens": 310238, "update_seconds": 347.9996396311326, "median_update_seconds": 9.150839251000434}
+{"stage": 3, "max_new_tokens": 192, "updates": 38, "rollouts": 2432, "sampled_tokens": 463561, "update_seconds": 386.5094582552556, "median_update_seconds": 10.162005874502938}
+{"stage": 4, "max_new_tokens": 256, "updates": 38, "rollouts": 2432, "sampled_tokens": 588987, "update_seconds": 431.02538621844724, "median_update_seconds": 11.341796262946445}
+{"stage": 5, "max_new_tokens": 320, "updates": 38, "rollouts": 2432, "sampled_tokens": 655182, "update_seconds": 471.19713216018863, "median_update_seconds": 12.40629276051186}
+{"stage": 6, "max_new_tokens": 384, "updates": 38, "rollouts": 2432, "sampled_tokens": 670769, "update_seconds": 507.92917155101895, "median_update_seconds": 13.354628047498409}
+{"stage": 7, "max_new_tokens": 448, "updates": 38, "rollouts": 2432, "sampled_tokens": 669678, "update_seconds": 548.3630449348129, "median_update_seconds": 14.446612511004787}
+{"stage": 8, "max_new_tokens": 512, "updates": 38, "rollouts": 2432, "sampled_tokens": 648624, "update_seconds": 578.0755521834362, "median_update_seconds": 15.430877705512103}

@@ -146,11 +146,7 @@ def leave_one_out(scores, group_size):
 
 def update(model, optimizer, prompts, responses, pad_id, group_size=4, alpha=2.0, microbatch=2,
            token_budget=None):
-    """Accumulate a fresh rollout batch, then clip and step once.
-
-    RLOO groups are formed before memory-sized microbatches. Each backward
-    loss divides by the full response count, including uneven microbatches.
-    """
+    """One update on one fresh batch; sequence sums, no advantage normalization."""
     model.eval()  # Keep dropout disabled even in the differentiable forward.
     old = score(model, prompts, responses, pad_id, microbatch, token_budget=token_budget)
     base = score(model, prompts, responses, pad_id, microbatch, reference=True, token_budget=token_budget)
@@ -158,7 +154,6 @@ def update(model, optimizer, prompts, responses, pad_id, group_size=4, alpha=2.0
     advantage = leave_one_out(values, group_size)
     optimizer.zero_grad(set_to_none=True)
     surrogate = 0.0
-    backward_microbatches = 0
     for i, j in scoring_ranges(prompts, responses, microbatch, token_budget):
         current = sequence_logprobs(model, prompts[i:j], responses[i:j], pad_id)
         loss = -(advantage[i:j] * current).sum() / len(prompts)
@@ -166,7 +161,6 @@ def update(model, optimizer, prompts, responses, pad_id, group_size=4, alpha=2.0
             raise FloatingPointError("Nonfinite policy-gradient loss")
         surrogate += loss.detach().item()
         loss.backward()
-        backward_microbatches += 1
     norm = torch.nn.utils.clip_grad_norm_(
         [p for p in model.parameters() if p.requires_grad], 1.0, error_if_nonfinite=True,
     )
@@ -178,8 +172,6 @@ def update(model, optimizer, prompts, responses, pad_id, group_size=4, alpha=2.0
         "sequence_entropy": -old.mean().item(), "score_std": values.std().item(),
         "advantage_std": advantage.std().item(), "gradient_norm": norm.item(),
         "gradient_clipped": norm.item() > 1.0,
-        "effective_batch_responses": len(prompts),
-        "backward_microbatches": backward_microbatches,
         "old_logprobs": old.tolist(), "base_logprobs": base.tolist(),
         "advantages": advantage.tolist(),
     }

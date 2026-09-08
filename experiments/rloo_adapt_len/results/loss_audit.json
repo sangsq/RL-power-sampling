@@ -1,0 +1,184 @@
+{
+  "at": "2026-09-07T17:03:15-07:00",
+  "method": "Independent full-position logits with manual response slicing; separately loaded non-PEFT base.",
+  "physical_gpu": 1,
+  "scope": "All 64 final fresh-policy probe responses for each target alpha; no new generation.",
+  "absolute_tolerance_nats": 0.1,
+  "runs": {
+    "2": {
+      "checks": {
+        "policy_full_vs_saved": {
+          "max_absolute_nats": 0.0030670166015625,
+          "mean_absolute_nats": 0.0005341768264770508
+        },
+        "separate_base_full_vs_saved": {
+          "max_absolute_nats": 0.00989532470703125,
+          "mean_absolute_nats": 0.002834886312484741
+        },
+        "separate_base_vs_disabled_adapter": {
+          "max_absolute_nats": 0.00989532470703125,
+          "mean_absolute_nats": 0.002834886312484741
+        }
+      },
+      "trajectory": [
+        {
+          "step": 0,
+          "policy_nll": 250.83777129650116,
+          "reference_ce": 250.83777129650116,
+          "ce_minus_nll": 0.0,
+          "identical_score_arrays": true
+        },
+        {
+          "step": 38,
+          "policy_nll": 132.13580644130707,
+          "reference_ce": 133.43263086676598,
+          "ce_minus_nll": 1.296824425458908,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 76,
+          "policy_nll": 91.1604031920433,
+          "reference_ce": 96.64270436763763,
+          "ce_minus_nll": 5.48230117559433,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 114,
+          "policy_nll": 53.03095878660679,
+          "reference_ce": 62.99753177165985,
+          "ce_minus_nll": 9.966572985053062,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 152,
+          "policy_nll": 36.21306198090315,
+          "reference_ce": 47.815044313669205,
+          "ce_minus_nll": 11.601982332766056,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 190,
+          "policy_nll": 36.76916915923357,
+          "reference_ce": 48.55098935961723,
+          "ce_minus_nll": 11.781820200383663,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 228,
+          "policy_nll": 32.78598749637604,
+          "reference_ce": 45.320751160383224,
+          "ce_minus_nll": 12.534763664007187,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 266,
+          "policy_nll": 27.820772744715214,
+          "reference_ce": 40.065149769186974,
+          "ce_minus_nll": 12.24437702447176,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 304,
+          "policy_nll": 26.350277863442898,
+          "reference_ce": 39.71535411477089,
+          "ce_minus_nll": 13.365076251327991,
+          "identical_score_arrays": false
+        }
+      ],
+      "independent_policy_nll": 26.350812040269375,
+      "independent_reference_ce": 39.718189001083374,
+      "raw_sha256": "b32b9b05757631406dab3e7714645bfe5fafe8dbfc329540f97486c199540738",
+      "adapter_sha256": "47fb377ab134ec745a1a2050edd0ad49e9a1201f57e465c5b67143c49e7eda41"
+    },
+    "4": {
+      "checks": {
+        "policy_full_vs_saved": {
+          "max_absolute_nats": 0.031829833984375,
+          "mean_absolute_nats": 0.000876501202583313
+        },
+        "separate_base_full_vs_saved": {
+          "max_absolute_nats": 0.039520263671875,
+          "mean_absolute_nats": 0.0033103972673416138
+        },
+        "separate_base_vs_disabled_adapter": {
+          "max_absolute_nats": 0.039520263671875,
+          "mean_absolute_nats": 0.0033103972673416138
+        }
+      },
+      "trajectory": [
+        {
+          "step": 0,
+          "policy_nll": 250.83777129650116,
+          "reference_ce": 250.83777129650116,
+          "ce_minus_nll": 0.0,
+          "identical_score_arrays": true
+        },
+        {
+          "step": 38,
+          "policy_nll": 141.23605793714523,
+          "reference_ce": 142.78013455867767,
+          "ce_minus_nll": 1.5440766215324402,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 76,
+          "policy_nll": 81.59643906354904,
+          "reference_ce": 87.38293704390526,
+          "ce_minus_nll": 5.786497980356216,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 114,
+          "policy_nll": 48.70838475227356,
+          "reference_ce": 58.78476879000664,
+          "ce_minus_nll": 10.076384037733078,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 152,
+          "policy_nll": 34.33060859143734,
+          "reference_ce": 49.423007652163506,
+          "ce_minus_nll": 15.092399060726166,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 190,
+          "policy_nll": 24.53713032603264,
+          "reference_ce": 39.476406157016754,
+          "ce_minus_nll": 14.939275830984116,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 228,
+          "policy_nll": 21.689125262200832,
+          "reference_ce": 36.90472088754177,
+          "ce_minus_nll": 15.215595625340939,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 266,
+          "policy_nll": 21.761205561459064,
+          "reference_ce": 36.78661671280861,
+          "ce_minus_nll": 15.025411151349545,
+          "identical_score_arrays": false
+        },
+        {
+          "step": 304,
+          "policy_nll": 26.081145383417606,
+          "reference_ce": 42.219173699617386,
+          "ce_minus_nll": 16.13802831619978,
+          "identical_score_arrays": false
+        }
+      ],
+      "independent_policy_nll": 26.08202188462019,
+      "independent_reference_ce": 42.22248409688473,
+      "raw_sha256": "bceeaded2384fcb8bb8230b71b4231d5f610f78ed1cd70a0d6a6690915d0d8e2",
+      "adapter_sha256": "aa2329475286cdd2dac1c686714c117e8373df4668bbfc9498854a87a27d86f6"
+    }
+  },
+  "passed": true,
+  "source_sha256": {
+    "experiments/10_rloo_adapt_len/scripts/audit_loss.py": "32a98c88832d85ee887af8c23d89af82ff258e7fc4c61666f645612298bce985",
+    "src/power_sampling/hf_policy.py": "d83fcfec4c505cc2f48b0b537b12dd3a02d2f9c283d93e5a87123bb98ec1099b"
+  }
+}
